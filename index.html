@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Калькулятор архива</title>
+</head>
+<body>
+    <div class="container page-workarea">
+        <div class="content">
+            <h1>Калькулятор архива</h1>
+            <form id="calcArch_vzone" class="page-calc page-calc--archive">
+                <!-- <pre>{{items}}</pre> -->
+                <block-calc 
+                    :block_id="item.block_id" 
+                    :index="index"
+                    :key="item.block_id"
+                    v-for="(item, index) in items"
+                    @objectupgrade="itemsUp($event)"
+                    @addrows="addrows($event)"
+                    @delrows="delrows($event)"
+                ></block-calc>
+                <div class="page-calc__total">
+                    <div class="page-calc__totalItem">
+                        <span class="page-calc__totalTitle">Запас для расчёта битрейта</span>
+                        <div class="page-calc__totalLine">
+                            <div class="range_container">
+                                <input v-model="range" type="range" min="0" max="100" value="0">
+                            </div>
+                            <span class="page-calc__totalLeft">0%</span>
+                            <div class="page-calc__totalCenter">
+                                <span :style="{left: styleRange}">{{range}}%</span>
+                            </div>
+                            <span class="page-calc__totalRight">100%</span>
+                        </div>
+                        
+                    </div>
+                    <div class="page-calc__totalItem">
+                        <span class="page-calc__totalTitle">Суммарный битрейт</span>
+                        <span class="page-calc__totalBold"> {{summBitrate}} <span>Мбит/с</span></span>
+                    </div>
+                    <div class="page-calc__totalItem">
+                        <span class="page-calc__totalTitle">Суммарный требуемый объем дискового пространства</span>
+                        <span class="page-calc__totalBold page-calc__totalBold--big"> {{summSpaceDisk}} <span>Тб</span></span>
+                    </div>
+                </div>
+                <div class="page-calc__buttons">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
